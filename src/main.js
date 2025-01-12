@@ -18,8 +18,8 @@ function doOperation(n1, n2, op) {
     "+": (n1, n2) => n1 + n2
   };
 
-  const un1 = parseInt(n1);
-  const un2 = parseInt(n2);
+  const un1 = parseFloat(n1);
+  const un2 = parseFloat(n2);
 
   return operations[op](un1, un2);
 }
