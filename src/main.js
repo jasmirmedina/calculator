@@ -36,7 +36,7 @@ btns.addEventListener("click", (e) => {
     tagName === "BUTTON" && operationSigns.includes(contentText) &&
     contentText !== "=" && numberInput.value
   ) {
-    values.first = parseFloat(numberInput.value);
+    values.first = numberInput.value;
 
     numberInput.value = "";
 
@@ -44,7 +44,7 @@ btns.addEventListener("click", (e) => {
   }
 
   if(operator && numberInput.value) {
-    values.second = parseFloat(numberInput.value);
+    values.second = numberInput.value;
   }
 
   if(operator && contentText === "=") {
