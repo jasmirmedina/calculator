@@ -1,7 +1,7 @@
 const btns = document.querySelector(".btns");
 const numberInput = document.querySelector(".number-input");
 
-const operationSigns = ["/", "x", "-", "+", "="];
+const operationSigns = ["/", "x", "-", "+", "=", "c", "ac"];
 
 const values = {
   first: 0,
@@ -28,13 +28,20 @@ btns.addEventListener("click", (e) => {
   const tagName = e.target.tagName;
   const contentText = e.target.textContent;
 
+  if(contentText === "c") {
+    numberInput.value = numberInput.value.split("").slice(0, -1).join("");
+  }
+
+  if(contentText === "ac") numberInput.value = "";
+
   if(tagName === "BUTTON" && !operationSigns.includes(contentText)) {
     numberInput.value += contentText;
   }
 
   if(
     tagName === "BUTTON" && operationSigns.includes(contentText) &&
-    contentText !== "=" && numberInput.value
+    contentText !== "=" && contentText !== "c" &&
+    contentText !== "ac" && numberInput.value
   ) {
     values.first = numberInput.value;
 
@@ -56,4 +63,6 @@ document.addEventListener("keydown", (e) => {
   if(e.key === "Backspace") {
     numberInput.value = numberInput.value.split("").slice(0, -1).join("");
   }
+
+  if(!isNaN(parseInt(e.key))) numberInput.value += e.key;
 });
